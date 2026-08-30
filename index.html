@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rizky Hari Mukti — Creative & Digital Professional</title>
+    <title>Rizky Hari Mukti — Creative Professional & Digital Creator</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -42,7 +42,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Subtle Film Grain Overlay */
+        /* Film Grain Overlay */
         .film-grain {
             position: fixed;
             top: 0;
@@ -51,47 +51,35 @@
             height: 100%;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
             pointer-events: none;
-            z-index: 9999;
+            z-index: 9998;
         }
 
-        /* Glassmorphism Header */
+        /* Header Style */
         .editorial-header {
-            background: rgba(7, 9, 14, 0.85);
+            background: rgba(7, 9, 14, 0.9);
             backdrop-filter: blur(16px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
 
-        /* Fullscreen Editorial Navigation Overlay (Opaque Solid) */
+        /* Fullscreen Mobile Menu Overlay - Fully Opaque & Robust z-index */
         #editorial-menu {
             position: fixed;
             inset: 0;
             background-color: #07090E;
-            z-index: 99999;
-            transform: translateY(-100%);
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 999999;
+            opacity: 0;
             visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
         }
         #editorial-menu.open {
-            transform: translateY(0);
+            opacity: 1;
             visibility: visible;
         }
 
-        /* PRODUCTION SAFETY: Default visible state so content never disappears if JS fails */
+        /* Production Safety: Sections always visible by default to prevent deployment blank screen */
         .editorial-reveal {
             opacity: 1;
             transform: none;
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: opacity, transform;
-        }
-        
-        /* If JS loads successfully, we prepare initial hidden state */
-        .js-ready .editorial-reveal {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        .js-ready .editorial-reveal.active {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         /* Custom Scrollbar */
@@ -118,29 +106,29 @@
                 <span class="w-2.5 h-2.5 rounded-full bg-electricCyan animate-pulse"></span> RIZKY HARI MUKTI
             </a>
             
-            <!-- Strict Separated Hamburger / Close Button (Min 48x48px) -->
-            <button id="menu-toggle" class="w-12 h-12 flex flex-col items-center justify-center gap-1.5 focus:outline-none relative z-[100000] cursor-pointer bg-surfaceDark rounded-full border border-cardBorder hover:border-electricCyan/50 transition" aria-label="Toggle Navigation">
+            <!-- Strict Separated Hamburger Button (Min 48x48px, high z-index) -->
+            <button id="menu-toggle" class="w-12 h-12 flex flex-col items-center justify-center gap-1.5 focus:outline-none relative z-[1000000] cursor-pointer bg-surfaceDark rounded-full border border-cardBorder hover:border-electricCyan/50 transition" aria-label="Toggle Navigation">
                 <span id="line-1" class="w-5 h-[2px] bg-offWhite transition-transform duration-300"></span>
                 <span id="line-2" class="w-5 h-[2px] bg-offWhite transition-opacity duration-300"></span>
             </button>
         </div>
     </header>
 
-    <!-- Fullscreen Opaque Cinematic Menu -->
+    <!-- Fullscreen Opaque Cinematic Menu with Separated Close Button -->
     <div id="editorial-menu" class="flex flex-col justify-between px-8 md:px-24 py-16 text-offWhite">
         <div class="flex justify-between items-center max-w-7xl mx-auto w-full">
             <span class="font-mono text-xs text-electricCyan uppercase tracking-widest">[ INDEX MENU ]</span>
-            <button id="menu-close" class="text-xs font-mono uppercase tracking-widest text-softGrey hover:text-offWhite cursor-pointer px-4 py-2 border border-cardBorder rounded-full min-h-[44px] flex items-center">CLOSE [X]</button>
+            <button id="menu-close" class="text-xs font-mono uppercase tracking-widest text-softGrey hover:text-offWhite cursor-pointer px-5 py-3 border border-cardBorder rounded-full min-w-[48px] min-h-[48px] flex items-center justify-center bg-surfaceDark">CLOSE [X]</button>
         </div>
         
         <div class="max-w-5xl mx-auto w-full space-y-4 md:space-y-6">
-            <a href="#home" class="menu-link block text-3xl md:text-5xl font-black tracking-tight text-softGrey hover:text-electricCyan transition-all transform hover:translate-x-4">01 // HOME</a>
-            <a href="#about" class="menu-link block text-3xl md:text-5xl font-black tracking-tight text-softGrey hover:text-electricCyan transition-all transform hover:translate-x-4">02 // ABOUT</a>
-            <a href="#experience" class="menu-link block text-3xl md:text-5xl font-black tracking-tight text-softGrey hover:text-electricCyan transition-all transform hover:translate-x-4">03 // EXPERIENCE</a>
-            <a href="#rizky-jasa" class="menu-link block text-3xl md:text-5xl font-black tracking-tight text-softGrey hover:text-electricCyan transition-all transform hover:translate-x-4">04 // INITIATIVE</a>
-            <a href="#projects" class="menu-link block text-3xl md:text-5xl font-black tracking-tight text-softGrey hover:text-electricCyan transition-all transform hover:translate-x-4">05 // PROJECTS</a>
-            <a href="#skills" class="menu-link block text-3xl md:text-5xl font-black tracking-tight text-softGrey hover:text-electricCyan transition-all transform hover:translate-x-4">06 // EXPERTISE</a>
-            <a href="#contact" class="menu-link block text-3xl md:text-5xl font-black tracking-tight text-softGrey hover:text-electricCyan transition-all transform hover:translate-x-4">07 // CONTACT</a>
+            <a href="#home" class="menu-link block text-2xl md:text-5xl font-black tracking-tight text-softGrey hover:text-electricCyan transition-all">01 // HOME</a>
+            <a href="#about" class="menu-link block text-2xl md:text-5xl font-black tracking-tight text-softGrey hover:text-electricCyan transition-all">02 // ABOUT</a>
+            <a href="#experience" class="menu-link block text-2xl md:text-5xl font-black tracking-tight text-softGrey hover:text-electricCyan transition-all">03 // EXPERIENCE</a>
+            <a href="#rizky-jasa" class="menu-link block text-2xl md:text-5xl font-black tracking-tight text-softGrey hover:text-electricCyan transition-all">04 // RIZKY JASA</a>
+            <a href="#projects" class="menu-link block text-2xl md:text-5xl font-black tracking-tight text-softGrey hover:text-electricCyan transition-all">05 // PROJECTS</a>
+            <a href="#skills" class="menu-link block text-2xl md:text-5xl font-black tracking-tight text-softGrey hover:text-electricCyan transition-all">06 // SKILLS</a>
+            <a href="#contact" class="menu-link block text-2xl md:text-5xl font-black tracking-tight text-softGrey hover:text-electricCyan transition-all">07 // CONTACT</a>
         </div>
 
         <div class="max-w-7xl mx-auto w-full flex justify-between text-xs font-mono text-softGrey">
@@ -149,13 +137,13 @@
         </div>
     </div>
 
-    <!-- HERO SECTION -->
+    <!-- 1. HOME SECTION -->
     <section id="home" class="relative min-h-screen pt-32 pb-20 px-6 flex items-center bg-deepNavy overflow-hidden">
         <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
             
             <div class="lg:col-span-7 space-y-6">
                 <div class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest px-3.5 py-1 bg-surfaceDark rounded-full border border-cardBorder text-electricCyan">
-                    <span class="w-2 h-2 rounded-full bg-electricCyan animate-pulse"></span> PORTFOLIO / 2026
+                    <span class="w-2 h-2 rounded-full bg-electricCyan animate-pulse"></span> CREATIVE PROFESSIONAL & DIGITAL CREATOR
                 </div>
                 
                 <div class="space-y-2">
@@ -167,11 +155,11 @@
                 </div>
 
                 <div class="flex flex-wrap items-center gap-3 font-mono text-xs text-softGrey tracking-wider uppercase">
-                    <span>DIGITAL CREATIVE</span>
-                    <span>•</span>
-                    <span>WEB PROJECTS</span>
-                    <span>•</span>
                     <span>CREATIVE THINKING</span>
+                    <span>•</span>
+                    <span>DIGITAL PROJECTS</span>
+                    <span>•</span>
+                    <span>OPEN FOR OPPORTUNITIES</span>
                 </div>
 
                 <p class="text-offWhite text-lg md:text-xl font-medium max-w-xl">
@@ -179,7 +167,7 @@
                 </p>
 
                 <p class="text-softGrey text-base leading-relaxed max-w-xl">
-                    Mengembangkan pengalaman profesional, kreativitas, dan kemampuan digital secara berkelanjutan untuk menciptakan solusi digital yang bernilai.
+                    Creative Professional with hands-on digital experience. Terbuka untuk kesempatan kerja formal serta siap memberikan kontribusi nyata melalui kemampuan web development dan kreativitas digital.
                 </p>
 
                 <div class="flex flex-wrap items-center gap-4 pt-4">
@@ -192,7 +180,7 @@
                 </div>
             </div>
 
-            <!-- Hero Side Visual with Fallback -->
+            <!-- Profile Photo -->
             <div class="lg:col-span-5 flex justify-center">
                 <div class="relative w-full max-w-[380px]">
                     <div class="absolute -inset-6 bg-electricCyan/10 rounded-full blur-3xl -z-10"></div>
@@ -209,7 +197,7 @@
         </div>
     </section>
 
-    <!-- ABOUT SECTION -->
+    <!-- 2. ABOUT SECTION -->
     <section id="about" class="relative py-32 px-6 bg-surfaceDark border-t border-cardBorder overflow-hidden editorial-reveal">
         <div class="absolute left-10 top-1/2 -translate-y-1/2 text-[260px] font-black text-offWhite/[0.015] select-none pointer-events-none z-0">
             ABOUT
@@ -229,7 +217,7 @@
                     </h2>
                     <div class="w-20 h-1 bg-electricCyan rounded-full"></div>
                     <div class="inline-block px-4 py-2 bg-deepNavy border border-cardBorder rounded-xl text-xs font-mono text-softGrey">
-                        AVAILABLE FOR OPPORTUNITIES
+                        AVAILABLE FOR FORMAL OPPORTUNITIES
                     </div>
                 </div>
 
@@ -241,14 +229,14 @@
                         Perjalanan saya dibentuk dari pengalaman kerja di lingkungan profesional, yang mengajarkan kedisiplinan, target, ketelitian, serta konsistensi dalam menyelesaikan setiap tantangan.
                     </p>
                     <p class="text-base text-softGrey leading-relaxed">
-                        Di luar pekerjaan utama, saya terus mengembangkan kemampuan digital dan mengeksplorasi project kreatif untuk memberikan dampak nyata.
+                        Sebagai seorang creative professional, saya mencari kesempatan kerja formal di mana saya dapat berkontribusi secara penuh sambil terus mengembangkan inisiatif digital seperti Rizky Jasa.
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- EXPERIENCE SECTION -->
+    <!-- 3. EXPERIENCE SECTION -->
     <section id="experience" class="py-32 px-6 bg-deepNavy text-offWhite relative overflow-hidden editorial-reveal border-t border-cardBorder">
         <div class="max-w-5xl mx-auto space-y-20 relative z-10">
             <div class="text-center space-y-3">
@@ -280,7 +268,7 @@
                     <div class="absolute -left-[35px] md:-left-[73px] top-7 w-10 h-10 rounded-full bg-surfaceDark border-2 border-electricCyan flex items-center justify-center shadow-lg">
                         <i data-lucide="code" class="w-4 h-4 text-electricCyan"></i>
                     </div>
-                    <span class="text-xs font-mono text-electricCyan font-bold uppercase tracking-widest">2025–2026 — DIGITAL CREATION</span>
+                    <span class="text-xs font-mono text-electricCyan font-bold uppercase tracking-widest">2025–2026 — DIGITAL CREATION & INITIATIVE</span>
                     <h3 class="text-2xl font-bold text-offWhite">Building Digital Solutions & Rizky Jasa</h3>
                     <p class="text-softGrey text-base leading-relaxed">
                         Mengembangkan kemampuan digital secara mandiri, membangun layanan digital Rizky Jasa, serta memanfaatkan AI-assisted workflow untuk memperluas solusi kreatif dan profesional.
@@ -290,18 +278,18 @@
         </div>
     </section>
 
-    <!-- RIZKY JASA SECTION -->
+    <!-- 4. RIZKY JASA SECTION -->
     <section id="rizky-jasa" class="py-32 px-6 bg-surfaceDark text-offWhite relative overflow-hidden editorial-reveal border-t border-cardBorder">
         <div class="max-w-6xl mx-auto space-y-16 relative z-10">
             <div class="text-center space-y-3">
                 <div class="flex items-center justify-center gap-3 font-mono text-xs text-electricCyan uppercase tracking-widest">
                     <span>04</span>
                     <span>/</span>
-                    <span>SIDE INITIATIVE</span>
+                    <span>INITIATIVE SHOWCASE</span>
                 </div>
                 <h2 class="text-4xl md:text-6xl font-black tracking-tight text-offWhite">Rizky Jasa</h2>
                 <p class="text-softGrey max-w-xl mx-auto text-base">
-                    Career support & digital service platform demonstrating practical web development and digital execution.
+                    Inisiatif layanan digital yang membantu pencari kerja mempersiapkan kebutuhan karier secara lebih profesional.
                 </p>
             </div>
 
@@ -328,4 +316,15 @@
                 <div class="space-y-3 pt-2 text-center">
                     <h3 class="text-2xl font-bold text-offWhite">Founder & Creator</h3>
                     <p class="text-sm text-softGrey leading-relaxed max-w-3xl mx-auto">
-                        Inisiatif layanan digital untuk membantu pencari kerja mendapa
+                        Inisiatif layanan digital untuk membantu pencari kerja mempersiapkan kebutuhan karier secara lebih profesional, mencakup dokumen lamaran kerja dan landing page.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. PROJECTS SECTION -->
+    <section id="projects" class="py-32 px-6 bg-deepNavy border-t border-cardBorder relative overflow-hidden editorial-reveal">
+        <div class="max-w-6xl mx-auto space-y-24 relative z-10">
+            <div class="text-center space-y-3">
+ 
