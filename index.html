@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rizky Hari Mukti — Creative & Digital Professional</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        deepNavy: '#07090E',
+                        surfaceDark: '#0D1117',
+                        electricCyan: '#00F2FE',
+                        offWhite: '#F3F4F6',
+                        softGrey: '#9CA3AF',
+                        cardBorder: 'rgba(255, 255, 255, 0.08)'
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                        mono: ['Space Mono', 'Inter', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+            background-color: #07090E;
+            color: #F3F4F6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Subtle Film Grain Overlay */
+        .film-grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Glassmorphism Header */
+        .editorial-header {
+            background: rgba(7, 9, 14, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        /* Fullscreen Editorial Navigation Overlay (Opaque Solid) */
+        #editorial-menu {
+            position: fixed;
+            inset: 0;
+            background-color: #07090E;
+            z-index: 99999;
+            transform: translateY(-100%);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            visibility: hidden;
+        }
+        #editorial-menu.open {
+            transform: translateY(0);
+            visibility: visible;
+        }
+
+        /* Smooth Cinematic Scene Reveal */
+        .editorial-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .editorial-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #07090E;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1F2937;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="selection:bg-electricCyan selection:text-deepNavy">
+
+    <div class="film-grain"></div>
+
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 w-full z-50 editorial-header transition-all">
+        <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+            <a href="#home" class="text-xs md:text-sm font-mono tracking-[0.25em] uppercase font-bold text-offWhite hover:text-electricCyan transition flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-electricCyan animate-pulse"></span> RIZKY HARI MUKTI
+            </a>
+            
+            <!-- Strict Separated Hamburger / Close Button (Min 48x48px) -->
+            <button id="menu-toggle" class="w-12 h-12 flex flex-col items-center justify-center gap-1.5 focus:outline-none relative z-[100000] cursor-pointer bg-surfaceDark rounded-full border border-cardBorder hover:border-electricCyan/50 transition" aria-label="Toggle Navigation">
+                <span id="line-1" class="w-5 h-[2px] bg-offWhite transition-transform duration-300"></span>
+                <span id="line-2" class="w-5 h-[2px] bg-offWhite transition-opacity duration-300"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Fullscreen Opaque Cinematic Menu -->
+    <div id="editorial-menu" class="flex flex-col justify-between px-8 md:px-24 py-16 text-offWhite">
+        <div class="flex justify-between items-center max-w-7xl mx-auto w-full">
+            <span class="font-mono text-xs text-electricCyan uppercase tracking-widest">[ INDEX MENU ]</span>
+            <button id="menu-close" class="text-xs font-mono uppercase tracking-widest text-softGrey hover:text-offWhite cursor-pointer px-4 py-2 border border-cardBorder rounded-full min-h-[44px] flex items-center">CLOSE [X]</button>
+        </div>
+        
+        <div class="max-w-5xl mx-auto w-full space-y-4 md:space-y-6">
+            <a href="#home" class="menu-link block text-3xl md:text-5xl font-black tracking-tight text-softGrey hover:text-electricCyan transition-all transform hover:translate-x-4">01 // HOME</a>
+            <a href="#about" class="menu-link block text-3xl md:text-5xl font-black tracking-tight text-softGrey hover:text-electricCyan transition-all transform hover:translate-x-4">02 // ABOUT</a>
+            <a href="#experience" class="menu-link block text-3xl md:text-5xl font-black tracking-tight text-softGrey hover:text-electricCyan transition-all transform hover:translate-x-4">03 // EXPERIENCE</a>
+            <a href="#rizky-jasa" class="menu-link block text-3xl md:text-5xl font-black tracking-tight text-softGrey hover:text-electricCyan transition-all transform hover:translate-x-4">04 // INITIATIVE</a>
+            <a href="#projects" class="menu-link block text-3xl md:text-5xl font-black tracking-tight text-softGrey hover:text-electricCyan transition-all transform hover:translate-x-4">05 // PROJECTS</a>
+            <a href="#skills" class="menu-link block text-3xl md:text-5xl font-black tracking-tight text-softGrey hover:text-electricCyan transition-all transform hover:translate-x-4">06 // EXPERTISE</a>
+            <a href="#contact" class="menu-link block text-3xl md:text-5xl font-black tracking-tight text-softGrey hover:text-electricCyan transition-all transform hover:translate-x-4">07 // CONTACT</a>
+        </div>
+
+        <div class="max-w-7xl mx-auto w-full flex justify-between text-xs font-mono text-softGrey">
+            <span>PORTFOLIO / 2026</span>
+            <span>RIZKY HARI MUKTI</span>
+        </div>
+    </div>
+
+    <!-- HERO SECTION (Editorial Film Opening) -->
+    <section id="home" class="relative min-h-screen pt-32 pb-20 px-6 flex items-center bg-deepNavy overflow-hidden">
+        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+            
+            <div class="lg:col-span-7 space-y-6">
+                <div class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest px-3.5 py-1 bg-surfaceDark rounded-full border border-cardBorder text-electricCyan">
+                    <span class="w-2 h-2 rounded-full bg-electricCyan animate-pulse"></span> PORTFOLIO / 2026
+                </div>
+                
+                <div class="space-y-2">
+                    <h1 class="text-6xl sm:text-7xl lg:text-8xl font-black tracking-tighter text-offWhite leading-[0.95]">
+                        RIZKY<br>
+                        <span class="font-light italic text-electricCyan">HARI</span><br>
+                        MUKTI
+                    </h1>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-3 font-mono text-xs text-softGrey tracking-wider uppercase">
+                    <span>DIGITAL CREATIVE</span>
+                    <span>•</span>
+                    <span>WEB PROJECTS</span>
+                    <span>•</span>
+                    <span>CREATIVE THINKING</span>
+                </div>
+
+                <p class="text-offWhite text-lg md:text-xl font-medium max-w-xl">
+                    “Building digital ideas into real experiences.”
+                </p>
+
+                <p class="text-softGrey text-base leading-relaxed max-w-xl">
+                    Mengembangkan pengalaman profesional, kreativitas, dan kemampuan digital secara berkelanjutan untuk menciptakan solusi digital yang bernilai.
+                </p>
+
+                <div class="flex flex-wrap items-center gap-4 pt-4">
+                    <a href="#projects" class="px-8 py-4 rounded-full bg-electricCyan text-deepNavy font-extrabold text-sm tracking-wide hover:bg-white transition shadow-2xl inline-flex items-center gap-2">
+                        Explore Projects <i data-lucide="arrow-down" class="w-4 h-4"></i>
+                    </a>
+                    <a href="#contact" class="px-8 py-4 rounded-full bg-transparent border border-cardBorder text-offWhite font-bold text-sm tracking-wide hover:border-electricCyan transition">
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Cinematic Side Visual -->
+            <div class="lg:col-span-5 flex justify-center">
+                <div class="relative w-full max-w-[380px]">
+                    <div class="absolute -inset-6 bg-electricCyan/10 rounded-full blur-3xl -z-10"></div>
+                    
+                    <div class="bg-surfaceDark border border-cardBorder p-4 rounded-[2.5rem] shadow-2xl relative overflow-hidden group">
+                        <div class="absolute top-6 left-6 px-3.5 py-1 bg-black/60 backdrop-blur text-softGrey text-[10px] font-mono rounded-full tracking-widest z-20 border border-cardBorder">
+                            CREATIVE PROFESSIONAL
+                        </div>
+                        <!-- Foto Profil Asli -->
+                        <img src="https://cdn.phototourl.com/free/2026-08-30-cf678e10-db33-4721-adb5-e6aac09271e3.png" alt="Rizky Hari Mukti" class="w-full h-[480px] object-cover object-top rounded-[1.8rem] contrast-105 filter grayscale-[10%] group-hover:grayscale-0 transition-all duration-700">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION (Editorial Storytelling) -->
+    <section id="about" class="relative py-32 px-6 bg-surfaceDark border-t border-cardBorder overflow-hidden editorial-reveal">
+        <div class="absolute left-10 top-1/2 -translate-y-1/2 text-[260px] font-black text-offWhite/[0.015] select-none pointer-events-none z-0">
+            ABOUT
+        </div>
+        <div class="max-w-6xl mx-auto relative z-10 space-y-12">
+            <div class="flex items-center gap-3 font-mono text-xs text-electricCyan uppercase tracking-widest">
+                <span>02</span>
+                <span>/</span>
+                <span>EDITORIAL IDENTITY</span>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-5 space-y-6">
+                    <h2 class="text-4xl md:text-6xl font-black tracking-tight text-offWhite leading-tight">
+                        CREATIVE THINKING.<br>
+                        <span class="text-electricCyan">DIGITAL EXECUTION.</span>
+                    </h2>
+                    <div class="w-20 h-1 bg-electricCyan rounded-full"></div>
+                    <div class="inline-block px-4 py-2 bg-deepNavy border border-cardBorder rounded-xl text-xs font-mono text-softGrey">
+                        AVAILABLE FOR OPPORTUNITIES
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 space-y-6 text-softGrey text-lg md:text-xl leading-relaxed">
+                    <p class="font-bold text-offWhite">
+                        Saya memiliki ketertarikan dalam membangun ide menjadi pengalaman digital melalui kreativitas, pemahaman visual, dan eksplorasi teknologi.
+                    </p>
+                    <p class="text-base text-softGrey leading-relaxed">
+                        Perjalanan saya dibentuk dari pengalaman kerja di lingkungan profesional, yang mengajarkan kedisiplinan, target, ketelitian, serta konsistensi dalam menyelesaikan setiap tantangan.
+                    </p>
+                    <p class="text-base text-softGrey leading-relaxed">
+                        Di luar pekerjaan utama, saya terus mengembangkan kemampuan digital dan mengeksplorasi project kreatif untuk memberikan dampak nyata.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION (Visual Journey) -->
+    <section id="experience" class="py-32 px-6 bg-deepNavy text-offWhite relative overflow-hidden editorial-reveal border-t border-cardBorder">
+        <div class="max-w-5xl mx-auto space-y-20 relative z-10">
+            <div class="text-center space-y-3">
+                <div class="flex items-center justify-center gap-3 font-mono text-xs text-electricCyan uppercase tracking-widest">
+                    <span>03</span>
+                    <span>/</span>
+                    <span>WORK EXPERIENCE</span>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-black tracking-tight text-offWhite">Professional Journey</h2>
+                <p class="text-softGrey">A continuous path of professional growth and digital creation.</p>
+            </div>
+
+            <div class="space-y-16 relative border-l-2 border-electricCyan/30 ml-4 md:ml-40 pl-6 md:pl-16">
+                <!-- Experience 01 -->
+                <div class="relative space-y-4">
+                    <div class="absolute -left-[35px] md:-left-[73px] top-1 w-10 h-10 rounded-full bg-surfaceDark border-2 border-electricCyan flex items-center justify-center shadow-lg">
+                        <i data-lucide="factory" class="w-4 h-4 text-electricCyan"></i>
+                    </div>
+                    <span class="text-xs font-mono text-electricCyan font-bold uppercase tracking-widest">2024 — PROFESSIONAL WORK</span>
+                    <h3 class="text-2xl font-bold text-offWhite">Injection Molding Operator</h3>
+                    <p class="text-sm font-semibold text-softGrey">PT Tenar Inti Mandiri</p>
+                    <p class="text-softGrey text-base leading-relaxed">
+                        Memiliki pengalaman bekerja dalam lingkungan industri manufaktur dengan fokus pada proses produksi injection molding. Menjaga kedisiplinan kerja, standar kualitas, ketelitian, serta konsistensi pencapaian target produksi.
+                    </p>
+                </div>
+
+                <!-- Experience 02 -->
+                <div class="relative space-y-4 pt-6">
+                    <div class="absolute -left-[35px] md:-left-[73px] top-7 w-10 h-10 rounded-full bg-surfaceDark border-2 border-electricCyan flex items-center justify-center shadow-lg">
+                        <i data-lucide="code" class="w-4 h-4 text-electricCyan"></i>
+                    </div>
+                    <span class="text-xs font-mono text-electricCyan font-bold uppercase tracking-widest">2025–2026 — DIGITAL CREATION</span>
+                    <h3 class="text-2xl font-bold text-offWhite">Building Digital Solutions & Rizky Jasa</h3>
+                    <p class="text-softGrey text-base leading-relaxed">
+                        Mengembangkan kemampuan digital secara mandiri, membangun layanan digital Rizky Jasa, serta memanfaatkan AI-assisted workflow untuk memperluas solusi kreatif dan profesional.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RIZKY JASA SECTION (Digital Service / Side Initiative) -->
+    <section id="rizky-jasa" class="py-32 px-6 bg-surfaceDark text-offWhite relative overflow-hidden editorial-reveal border-t border-cardBorder">
+        <div class="max-w-6xl mx-auto space-y-16 relative z-10">
+            <div class="text-center space-y-3">
+                <div class="flex items-center justify-center gap-3 font-mono text-xs text-electricCyan uppercase tracking-widest">
+                    <span>04</span>
+                    <span>/</span>
+                    <span>SIDE INITIATIVE</span>
+                </div>
+                <h2 class="text-4xl md:text-6xl font-black tracking-tight text-offWhite">Rizky Jasa</h2>
+                <p class="text-softGrey max-w-xl mx-auto text-base">
+                    Career support & digital service platform demonstrating practical web development and digital execution.
+                </p>
+            </div>
+
+            <div class="bg-deepNavy border border-cardBorder p-6 md:p-12 rounded-3xl shadow-2xl space-y-8">
+                <div class="flex flex-wrap items-center justify-center gap-3 pb-2 font-mono text-xs text-electricCyan">
+                    <span class="px-4 py-1.5 bg-surfaceDark rounded-full border border-cardBorder">CV ATS FRIENDLY</span>
+                    <span class="px-4 py-1.5 bg-surfaceDark rounded-full border border-cardBorder">CAREER SUPPORT</span>
+                    <span class="px-4 py-1.5 bg-surfaceDark rounded-full border border-cardBorder">LANDING PAGE</span>
+                </div>
+
+                <div class="rounded-2xl overflow-hidden border border-cardBorder bg-black shadow-2xl">
+                    <div class="bg-surfaceDark px-4 py-3 border-b border-cardBorder flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                            <span class="text-xs text-softGrey font-mono ml-2">rizkyjasa.github.io/Rizky-Jasa/</span>
+                        </div>
+                        <span class="text-xs font-mono text-electricCyan">PROJECT PREVIEW</span>
+                    </div>
+                    <!-- Screenshot Rizky Jasa Asli - Uncropped -->
+                    <img src="https://cdn.phototourl.com/free/2026-08-30-7974e667-90a3-46c8-a9ea-721d2a3e58f9.jpg" alt="Rizky Jasa Website Screenshot" class="w-full h-auto object-contain max-h-[500px]">
+                </div>
+
+                <div class="space-y-3 pt-2 text-center">
+                    <h3 class="text-2xl font-bold text-offWhite">Founder & Creator</h3>
+                    <p class="text-sm text-softGrey leading-relaxed max-w-3xl mx-auto">
+                        Inisiatif layanan digital untuk membantu pencari kerja mendapatkan dokumen profesional berkualitas tinggi serta landing page yang responsif dan fungsional.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION (Scene Reveal Presentation, No Drag, No Crop) -->
+    <section id="projects" class="py-32 px-6 bg-deepNavy border-t border-cardBorder relative overflow-hidden editorial-reveal">
+        <div class="max-w-6xl mx-auto space-y-24 relative z-10">
+            <div class="text-center space-y-3">
+                <div class="flex items-center justify-center gap-3 font-mono text-xs text-electricCyan uppercase tracking-widest">
+                  
