@@ -76,14 +76,20 @@
             visibility: visible;
         }
 
-        /* Smooth Cinematic Scene Reveal */
+        /* PRODUCTION SAFETY: Default visible state so content never disappears if JS fails */
         .editorial-reveal {
-            opacity: 0;
-            transform: translateY(30px);
+            opacity: 1;
+            transform: none;
             transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
             will-change: opacity, transform;
         }
-        .editorial-reveal.active {
+        
+        /* If JS loads successfully, we prepare initial hidden state */
+        .js-ready .editorial-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .js-ready .editorial-reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
@@ -143,7 +149,7 @@
         </div>
     </div>
 
-    <!-- HERO SECTION (Editorial Film Opening) -->
+    <!-- HERO SECTION -->
     <section id="home" class="relative min-h-screen pt-32 pb-20 px-6 flex items-center bg-deepNavy overflow-hidden">
         <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
             
@@ -186,7 +192,7 @@
                 </div>
             </div>
 
-            <!-- Hero Cinematic Side Visual -->
+            <!-- Hero Side Visual with Fallback -->
             <div class="lg:col-span-5 flex justify-center">
                 <div class="relative w-full max-w-[380px]">
                     <div class="absolute -inset-6 bg-electricCyan/10 rounded-full blur-3xl -z-10"></div>
@@ -195,8 +201,7 @@
                         <div class="absolute top-6 left-6 px-3.5 py-1 bg-black/60 backdrop-blur text-softGrey text-[10px] font-mono rounded-full tracking-widest z-20 border border-cardBorder">
                             CREATIVE PROFESSIONAL
                         </div>
-                        <!-- Foto Profil Asli -->
-                        <img src="https://cdn.phototourl.com/free/2026-08-30-cf678e10-db33-4721-adb5-e6aac09271e3.png" alt="Rizky Hari Mukti" class="w-full h-[480px] object-cover object-top rounded-[1.8rem] contrast-105 filter grayscale-[10%] group-hover:grayscale-0 transition-all duration-700">
+                        <img src="https://cdn.phototourl.com/free/2026-08-30-cf678e10-db33-4721-adb5-e6aac09271e3.png" alt="Rizky Hari Mukti" class="w-full h-[480px] object-cover object-top rounded-[1.8rem] contrast-105 filter grayscale-[10%] group-hover:grayscale-0 transition-all duration-700" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'480\'><rect width=\'100%\' height=\'100%\' fill=\'%23111827\'/><text x=\'50%\' y=\'50%\' fill=\'%239CA3AF\' font-family=\'sans-serif\' font-size=\'16\' text-anchor=\'middle\'>Rizky Hari Mukti</text></svg>'">
                     </div>
                 </div>
             </div>
@@ -204,7 +209,7 @@
         </div>
     </section>
 
-    <!-- ABOUT SECTION (Editorial Storytelling) -->
+    <!-- ABOUT SECTION -->
     <section id="about" class="relative py-32 px-6 bg-surfaceDark border-t border-cardBorder overflow-hidden editorial-reveal">
         <div class="absolute left-10 top-1/2 -translate-y-1/2 text-[260px] font-black text-offWhite/[0.015] select-none pointer-events-none z-0">
             ABOUT
@@ -243,7 +248,7 @@
         </div>
     </section>
 
-    <!-- EXPERIENCE SECTION (Visual Journey) -->
+    <!-- EXPERIENCE SECTION -->
     <section id="experience" class="py-32 px-6 bg-deepNavy text-offWhite relative overflow-hidden editorial-reveal border-t border-cardBorder">
         <div class="max-w-5xl mx-auto space-y-20 relative z-10">
             <div class="text-center space-y-3">
@@ -285,7 +290,7 @@
         </div>
     </section>
 
-    <!-- RIZKY JASA SECTION (Digital Service / Side Initiative) -->
+    <!-- RIZKY JASA SECTION -->
     <section id="rizky-jasa" class="py-32 px-6 bg-surfaceDark text-offWhite relative overflow-hidden editorial-reveal border-t border-cardBorder">
         <div class="max-w-6xl mx-auto space-y-16 relative z-10">
             <div class="text-center space-y-3">
@@ -317,23 +322,10 @@
                         </div>
                         <span class="text-xs font-mono text-electricCyan">PROJECT PREVIEW</span>
                     </div>
-                    <!-- Screenshot Rizky Jasa Asli - Uncropped -->
-                    <img src="https://cdn.phototourl.com/free/2026-08-30-7974e667-90a3-46c8-a9ea-721d2a3e58f9.jpg" alt="Rizky Jasa Website Screenshot" class="w-full h-auto object-contain max-h-[500px]">
+                    <img src="https://cdn.phototourl.com/free/2026-08-30-7974e667-90a3-46c8-a9ea-721d2a3e58f9.jpg" alt="Rizky Jasa Website Screenshot" class="w-full h-auto object-contain max-h-[500px]" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'><rect width=\'100%\' height=\'100%\' fill=\'%23111827\'/><text x=\'50%\' y=\'50%\' fill=\'%239CA3AF\' font-family=\'sans-serif\' font-size=\'16\' text-anchor=\'middle\'>Rizky Jasa Preview</text></svg>'">
                 </div>
 
                 <div class="space-y-3 pt-2 text-center">
                     <h3 class="text-2xl font-bold text-offWhite">Founder & Creator</h3>
                     <p class="text-sm text-softGrey leading-relaxed max-w-3xl mx-auto">
-                        Inisiatif layanan digital untuk membantu pencari kerja mendapatkan dokumen profesional berkualitas tinggi serta landing page yang responsif dan fungsional.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROJECTS SECTION (Scene Reveal Presentation, No Drag, No Crop) -->
-    <section id="projects" class="py-32 px-6 bg-deepNavy border-t border-cardBorder relative overflow-hidden editorial-reveal">
-        <div class="max-w-6xl mx-auto space-y-24 relative z-10">
-            <div class="text-center space-y-3">
-                <div class="flex items-center justify-center gap-3 font-mono text-xs text-electricCyan uppercase tracking-widest">
-                  
+                        Inisiatif layanan digital untuk membantu pencari kerja mendapa
